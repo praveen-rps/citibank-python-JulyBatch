@@ -1,0 +1,249 @@
+Decorators are a very powerful and useful tool in Python since it allows programmers to modify the behaviour 
+of a function or class. 
+
+Decorators allow us to wrap another function in order to extend the behaviour of the wrapped function, 
+without permanently modifying it.
+
+
+First Class Objects
+--------------------
+In Python, functions are first class objects which means that functions in Python can be used or passed as arguments.
+
+Properties of first class functions:
+
+    1. A function is an instance of the Object type.
+    2. We can store the function in a variable.
+    3. We can pass the function as a parameter to another function.
+    4. We can return the function from a function.
+    5. We can store them in data structures such as hash tables, lists etc.,
+
+# Python program to illustrate functions
+# can be treated as objects
+def shout(text):
+	return text.upper()
+
+print(shout('Hello'))
+
+yell = shout
+
+print(yell('Hello'))
+
+
+
+
+
+class
+-----
+
+class College:
+    name="JNTU"
+    city="Hyderabad"
+    def showDetails(self):
+        print(self.name," ",self.city)
+
+c = College()
+c.showDetails()
+
+Adding an empty constructor to above class
+-------------------------------------------
+
+class College:
+    name="JNTU"
+    city="Hyderabad"
+    def __init__(self):
+        pass
+    def showDetails(self):
+        print(self.name," ",self.city)
+
+
+Adding a parameterized constructor
+----------------------------------
+class College:
+    name=""				# class Variables
+    city=""
+    def __init__(self,name,city):	# instance variables
+        self.name=name
+        self.city=city
+    def showDetails(self):
+        print(self.name," ",self.city)
+
+
+c1 = College("svu","tirupati")
+c1.showDetails()
+
+
+by default all variables or methods are public in python classes
+
+__ (double underscore ) before any method or variable , then it is declared as private
+
+_(single underscore) before any method or variable, then it is refered to protected
+
+
+clas with data and methods
+--------------------------
+class Employee:
+    eid = None
+    name = None
+    dept = None		# these are public variables
+    __salary = 90000  # this is a private variable
+    _desg = "Manager"  # this is a protected variable
+    
+    def display(self):
+        print("ID = "+self.eid+" Name = "+self.name+" Dept = "+self.dept)
+        
+    def setData(self):
+        self.eid = "9999"
+        self.name="Kumar"
+        self.dept="Quality"
+        
+    def showSalary(self):
+        print("The salary is : ",self.__salary)
+
+
+emp1 = Employee()
+emp2 = Employee()
+emp3 = Employee()
+emp1.setData()
+emp1.display()
+
+
+class with default constructor
+--------------------------------
+class Student:
+    htno = None
+    name = None
+    branch = None
+    def __init__(self):
+		
+        print("This method is called automatically")
+        self.htno="1001"
+        self.name="Arun"
+        self.branch="cse"
+        
+    def showDetails(self):
+        print("Htno = "+self.htno+" Name = "+self.name+" Branch = "+self.branch)
+
+s2 = Student()
+s2.showDetails()
+
+s3 = Student()
+s3.showDetails()
+
+class with parameterized constructor
+-----------------------------------
+class Student1:
+    htno = None
+    name = None
+    branch = None
+  
+    def __init__(self, htno,name,branch):
+        print("This method is called automatically")
+        self.htno=htno
+        self.name=name
+        self.branch=branch
+        
+    
+    def showDetails(self):
+        print("Htno = "+self.htno+" Name = "+self.name+" Branch = "+self.branch)
+
+s4 = Student1("8999","Sai","Civil")
+s4.showDetails()
+
+s5 = Student1("9001","Sunny","eee")
+s5.showDetails()
+
+
+Accessing a private variables using getter and setter methods using property method
+------------------------------------------------------------------------------------
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+
+    def get_radius(self):
+        print("Getting radius")
+        return self._radius
+
+    def set_radius(self, value):
+        if value <= 0:
+            raise ValueError("Radius must be positive")
+        print("Setting radius")
+        self._radius = value
+
+    def del_radius(self):
+        print("Deleting radius")
+        del self._radius
+
+    radius = property(get_radius, set_radius, del_radius, "Radius of the circle")
+
+
+# Create an instance of Circle
+circle = Circle(5)
+
+# Access the radius attribute using the getter method
+print(circle.radius)  # Output: Getting radius, 5
+
+# Modify the radius attribute using the setter method
+circle.radius = 7  # Output: Setting radius
+
+# Access the modified radius attribute using the getter method
+print(circle.radius)  # Output: Getting radius, 7
+
+# Try to set an invalid negative radius
+circle.radius = 2  # Output: ValueError: Radius must be positive
+
+# Delete the radius attribute
+del circle.radius  # Output: Deleting radius
+
+# Try to access the deleted radius attribute
+print(circle.radius)  # Output: Getting radius, AttributeError: 'Circle' object has no attribute '_radius'
+
+
+
+
+Program to demonstrate Method overriding in python
+--------------------------------------------------
+class Shape:
+    def area(self):
+        pass
+
+    def perimeter(self):
+        pass
+
+
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+    def perimeter(self):
+        return 2 * 3.14 * self.radius
+
+
+# Create objects of different shapes
+rectangle = Rectangle(5, 3)
+circle = Circle(4)
+
+# Call the area() and perimeter() methods on the different objects
+print("Rectangle Area:", rectangle.area())  # Output: Rectangle Area: 15
+print("Rectangle Perimeter:", rectangle.perimeter())  # Output: Rectangle Perimeter: 16
+
+print("Circle Area:", circle.area())  # Output: Circle Area: 50.24
+print("Circle Perimeter:", circle.perimeter())  # Output: Circle Perimeter: 25.12
+
+
+
+

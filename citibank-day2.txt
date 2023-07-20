@@ -1,0 +1,301 @@
+Today's Agenda
+--------------
+
+1. Set
+2. Dictionary
+3. Functions
+4. Lambda Expressions
+5. map(), filter() and reduce()
+6. Closure, Decorators, Generators and Iterators
+7. String processing methods
+
+
+group of values to the processed --- 
+To access group of values, we have a concept collections
+Array
+List
+Tuple   
+
+
+SET
+---
+--> Unordered collection of unique elements
+---> Mutable
+
+---> predefined methods to process the set object
+
+l1 = [1,2,3,4,5]  // list
+l2 =  (1,2,3,4,5) // tupe
+my_set = {1,2,3,4,5} // set
+
+
+issubset()
+copy()---> 
+
+s2 = s1.copy()
+
+s2=s1
+
+single dimensional objects
+
+s1---> 10,20,30,40
+s2---> 50,78,97,67
+
+(key, value)---> two dim object
+
+y1={10,30,40,50}
+y2= 
+
+
+Dictionary
+----------
+(key,value)
+keys--->unique
+value -->duplicate
+
+
+"key":"value"
+
+d1 = {"k1":"value1","k2":"value2","k3":"value3"}
+
+Methods
+------
+keys()---> returns al the keys from dict
+values()---> return all the values
+
+
+print()----> to display the given string on console
+
+s1; Hello
+s2;
+s3
+s4
+s5
+
+s1; Bye
+s2;
+s3
+s4
+s5
+
+input()----> to read the values from standard input device
+
+functions()
+a function is a named block of statements
+
+modularize our program
+
+
+online shopping application
+
+program
+-----
+s1
+s2
+
+
+s100
+;
+;s200
+
+
+
+
+
+
+s1000
+
+
+m1()
+m2()
+m3()
+m4()
+
+predefined  -----> it is already provided by lang itself
+user defined-----> will be provided be the user / developers
+print("Hello")
+
+syntax
+------
+def function_name(list_of_parameters):
+	statements;
+
+def display():
+	print("Hello, inside the method")
+	print("Hello second line")
+
+print("Hello, third line")
+
+
+display()
+
+
+1. functions without parameters and without return type
+def display():
+	print("Hello, inside the method")
+	print("Hello second line")
+
+2. functions without parameters and with return type
+def returnValue():
+	return 10;
+
+
+3. functions with parameters and without return type
+def area(a,b):
+	print("The area is ",(a*b))
+
+
+4. functions with parameters and with return type
+def area(a,b):
+	return a*b
+
+
+
+
+
+
+
+ncr  ---> n!/ (n-r)! * r!
+
+4c2---> 4!/2!*2!
+
+local variables-----> which are defined inside the method
+whose scope is within the method or function
+
+global variables----> which are not part of any method / function
+whose scope is throug the application
+
+
+1. method with positional arguments
+
+
+
+def displayDetails(name,age,city):  // formal paramters
+	print("Name = ",name,"Age = ",age,"city = ",city)
+
+
+displayDetails("praveen",45,"Hyderabad") // actual parameters
+
+
+methods with default parameters
+----------------------------------
+def displayDetails(name,age,city="Hyderabad"):  
+	print("Name = ",name,"Age = ",age,"city = ",city)
+
+displayDetails("praveen",45,"Chennai")
+
+Methods with keywords as parameters
+
+
+
+variable arguments
+-----------------
+def add1(n1,n2):
+	// statements
+
+def add2(n1,n2,n3):
+	// statements
+
+add(10,20,30)
+
+
+def myfunc(*args):
+	for org in args:
+		print(org)
+
+myfunc(1)---> (1)
+myfunc(1,2)---> (1,2)
+myfunc(1,2,3)---> (1,2,3)
+
+
+variable keyword arguments
+--------------------------
+def my_function(**kwargs):
+	return kwargs
+
+
+def print_kwargs(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_kwargs(name="Alice", age=30, city="New York")
+
+
+
+Ex-2
+def process_person(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# Passing variable keyword arguments
+process_person(name="Alice", age=25, city="New York")
+
+# Creating a dictionary and passing it as keyword arguments
+person_info = {
+    "name": "Bob",
+    "age": 30,
+    "city": "London"
+}
+process_person(**person_info)
+
+
+Ex-3
+def print_person_info(**kwargs):
+    print("Person Information:")
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+# Example calls to the function with different keyword arguments
+print_person_info(name="Alice", age=30, city="New York")
+print_person_info(name="Bob", occupation="Engineer", country="USA")
+print_person_info(name="Charlie", hobby="Reading", email="charlie@example.com")
+
+
+
+
+4. Lambda Expressions are an anonymous functions
+functions without having any name or def keyword
+
+
+def add(a,b):
+	return a+b
+
+
+lambda a,b:a+b
+
+
+Lambda expression can take any number of arguments but can have only one expression
+
+
+filter method is used to extract the values based on condition
+
+x= list(filter(lambda,collection))
+
+
+num = [10,30,40,56,27,33,15,70]
+f1 = lambda x : x > 30
+nlst = filter(f1,num)
+
+
+reduce
+
+num = [2, 3, 4, 5]
+
+prod=1
+for x in 2 3 4 5:
+	prod = prod * x
+
+
+
+p = reduce(lambda x,y : x*y,num)
+
+closure
+decoratros
+generators
+Iterators
+
+
+
+
+	
+

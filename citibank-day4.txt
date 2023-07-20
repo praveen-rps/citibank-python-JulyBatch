@@ -1,0 +1,372 @@
+Regular Expressions
+-------------------
+A RegEx, or Regular Expression, is a sequence of characters that forms a search pattern.
+
+RegEx can be used to check if a string contains the specified search pattern
+
+Python has a built-in package called re, which can be used to work with Regular Expressions.
+
+Import the re module
+
+
+The re module offers a set of functions that allows us to search a string for a match:
+
+Function 	Description
+---------	-----------
+findall 	Returns a list containing all matches
+search 		Returns a Match object if there is a match anywhere in the string
+split 		Returns a list where the string has been split at each match
+sub 		Replaces one or many matches with a string
+
+
+Character 	Description 								Example 
+---------	-----------								-------	
+[] 	A set of characters 								"[a-m]" 	
+\ 	Signals a special sequence (can also be used to escape special characters) 	"\d" 	
+. 	Any character (except newline character) 					"he..o" 	
+^ 	Starts with 									"^hello" 	
+$ 	Ends with 									"planet$" 			
+* 	Zero or more occurrences 							"he.*o" 	
++ 	One or more occurrences 							"he.+o" 			
+? 	Zero or one occurrences 							"he.?o" 	
+{} 	Exactly the specified number of occurrences 					"he.{2}o" 	
+| 	Either or 									"falls|stays"
+
+
+
+
+findall() method
+----------------
+import re
+
+#Return a list containing every occurrence of "ai":
+
+txt = "The rain in Spain"
+x = re.findall("ai", txt)
+print(x)
+
+
+Ex-2
+-----
+
+import re
+
+txt = "The rain in Spain"
+
+#Check if "Portugal" is in the string:
+
+x = re.findall("Portugal", txt)
+print(x)
+
+if (x):
+  print("Yes, there is at least one match!")
+else:
+  print("No match")
+
+
+Ex-3
+----
+import re
+
+txt = "The rain in Spain"
+x = re.search("\s", txt)
+
+print("The first white-space character is located in position:", x.start()) 
+
+
+Ex-4
+-----
+import re
+
+#Split the string at every white-space character:
+
+txt = "The rain in Spain"
+x = re.split("\s", txt)
+print(x)
+
+Ex-5
+----
+import re
+
+pattern = r'apple'
+text = 'I love eating apples.'
+
+match = re.search(pattern, text)
+if match:
+    print('Pattern found!')
+else:
+    print('Pattern not found.')
+
+
+Ex-6
+-----
+import re
+
+text = 'Contact us at support@example.com or info@example.com'
+
+emails = re.findall(r'\b[\w.-]+@[\w.-]+\.\w+\b', text)
+print(emails)
+
+
+Ex-7
+----
+import re
+
+text = 'Hello, World! How are you?'
+
+words = re.split(r'\W+', text)
+print(words)
+
+
+Ex-8
+----
+import re
+
+text = 'Hello, Bob! How are you, Bob?'
+
+new_text = re.sub(r'Bob', 'Alice', text)
+print(new_text)
+
+
+
+Ex-9
+----
+mport re
+
+text = 'Date: 2023-06-14'
+
+match = re.search(r'Date: (\d{4}-\d{2}-\d{2})', text)
+if match:
+    print('Full match:', match.group(0))
+    print('Date:', match.group(1))
+
+
+Ex-10
+-----
+program to extract url pattern from string
+import re
+
+# Example string containing URLs
+text = "This is a sample text with URLs: https://example.com, http://www.test.com, and https://www.example.org."
+
+# Regular expression pattern to match URLs
+url_pattern = r"(https?://\S+)"
+
+# Find all URLs in the text using the pattern
+urls = re.findall(url_pattern, text)
+
+# Print the extracted URLs
+for url in urls:
+    print(url)
+
+Ex-11
+----
+program to check the given string has atleast one upper case, one lower case, one alphanumeric, one number with max size of 8 characters
+
+import re
+
+def check_string_validity(input_string):
+    pattern = r"^(?=.*[A-Z])(?=.*[_#&])(?=.*\d)(?=.*[a-zA-Z0-9]).{1,8}$"
+    return bool(re.match(pattern, input_string))
+
+# Example usage:
+test_string = "Abc123#&"
+if check_string_validity(test_string):
+    print("Valid string.")
+else:
+    print("Invalid string.")
+
+
+
+
+
+
+File Operations
+---------------
+#Program to read the contents from keyboard and write to a file
+
+file_path = 'd://output_file.txt'
+
+# Read input from the keyboard
+input_text = input('Enter the text: ')
+
+# Write input to a text file
+with open(file_path, 'w') as file:
+    file.write(input_text)
+
+print('Input written to', file_path)
+
+
+#Program to read the contents from file and display on monitor
+
+# Method 1: Using the `open()` function
+file_path = 'd://output_file.txt'
+
+# Open the file in read mode
+with open(file_path, 'r') as file:
+    contents = file.read()
+
+#print(contents)
+
+# Method 2: Using the `readlines()` method
+with open(file_path, 'r') as file:
+    lines = file.readlines()
+
+for line in lines:
+    print(line)
+
+#Program to append the contents to existing file
+
+file_path = 'path/to/file.txt'
+
+# Open the file in append mode
+with open(file_path, 'a') as file:
+    file.write('This line will be appended.')
+
+# Method 2: Using the `writelines()` method
+file_path = 'path/to/another_file.txt'
+lines = ['New line 1\n', 'New line 2\n', 'New line 3\n']
+
+# Open the file in append mode
+with open(file_path, 'a') as file:
+    file.writelines(lines)
+
+
+
+Working with CSV  files
+----------------------
+
+Reading data from csv files
+
+import csv
+
+file_path = 'd://data.csv'
+
+# Read data from the CSV file
+with open(file_path, 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+
+
+Writing data to csv files
+-------------------------
+import csv
+
+file_path = 'd://dataoutput.csv'
+data = [
+    ['Name', 'Age', 'City'],
+    ['John', '25', 'New York'],
+    ['Emily', '30', 'London'],
+    ['Michael', '35', 'Sydney']
+]
+
+# Write data to the CSV file
+with open(file_path, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+print('Data written to', file_path)
+
+
+Serialization and Deserialization in python
+--------------------------------------------
+Object serialization refers to the process of converting an object into a format that can be stored or transmitted and later reconstructed into an object. 
+
+The pickle module in Python provides functionality for object serialization and deserialization.
+
+import pickle
+
+# Define an object
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+person = Person('John', 30)
+
+# Serialize the object
+serialized_object = pickle.dumps(person)
+
+# Write the serialized object to a file
+with open('d://person.pickle', 'wb') as file:
+    file.write(serialized_object)
+
+# Read the serialized object from the file
+with open('d://person.pickle', 'rb') as file:
+    serialized_object = file.read()
+
+# Deserialize the object
+deserialized_object = pickle.loads(serialized_object)
+
+# Access the deserialized object
+print(deserialized_object.name)
+print(deserialized_object.age)
+
+
+XML Parser example program
+--------------------------
+import xml.etree.ElementTree as ET
+
+# Load XML data from a file
+tree = ET.parse('d://xmldata.xml')
+
+# Get the root element
+root = tree.getroot()
+
+# Access elements and attributes
+for child in root:
+    print('Element:', child.tag)
+    print('Attributes:', child.attrib)
+    for subchild in child:
+        print('Subelement:', subchild.tag, 'Text:', subchild.text)
+
+# Access specific elements
+element = root.find('element_name')
+if element is not None:
+    # Access element data
+    data = element.text
+
+# Modify XML data
+for child in root:
+    # Modify attributes
+    child.set('new_attribute', 'value')
+
+    for subchild in child:
+        # Modify element text
+        subchild.text = 'New text'
+
+# Save modified XML to a file
+tree.write('d://modified_data.xml')
+
+
+Json parser python program
+----------------------------
+import json
+
+# Read JSON data from file
+with open('d://data.json') as file:
+    json_data = json.load(file)
+
+# Parse each JSON object in the array
+for data in json_data:
+    name = data['name']
+    age = data['age']
+    city = data['city']
+    hobbies = data['hobbies']
+
+    print('Name:', name)
+    print('Age:', age)
+    print('City:', city)
+    print('Hobbies:', hobbies)
+    print()
+
+Logging in python
+-------------------
+
+
+
+
+
+
+
